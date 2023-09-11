@@ -12,7 +12,6 @@ const routerProduct: Routes = [
     path: 'product',
     component: ProductComponent,
   },
-
 ];
 
 @NgModule({

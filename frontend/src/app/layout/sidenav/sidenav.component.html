@@ -1,13 +1,11 @@
-
 <div class="card flex justify-content-center">
-    <p-sidebar [(visible)]="sidebarVisible" styleClass="border-round">
-        
-    
-    
+  <p-sidebar [(visible)]="sidebarVisible" styleClass="border-round">
     <div class="card flex justify-content-center">
-        <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+      <p-panelMenu [model]="items" [style]="{ width: '300px' }"></p-panelMenu>
     </div>
-
-    </p-sidebar>
-    <p-button (click)="sidebarVisibleToggle()" icon="pi pi-align-justify"></p-button>
+  </p-sidebar>
+  <p-button
+    (click)="sidebarVisibleToggle()"
+    icon="pi pi-align-justify"
+  ></p-button>
 </div>

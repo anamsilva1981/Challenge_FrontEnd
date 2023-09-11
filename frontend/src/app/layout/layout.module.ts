@@ -8,16 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    SidenavComponent
-  ],
-  imports: [
-    CommonModule,
-    PrimeNGModule,
-    FormsModule
-  ],
-  exports: [HeaderComponent, FooterComponent, SidenavComponent]
+  declarations: [HeaderComponent, FooterComponent, SidenavComponent],
+  imports: [CommonModule, PrimeNGModule, FormsModule],
+  exports: [HeaderComponent, FooterComponent, SidenavComponent],
 })
-export class LayoutModule { }
+export class LayoutModule {}
