@@ -7,11 +7,7 @@ const routerProduct: Routes = [
   {
     path: '',
     component: ProductComponent,
-  },
-  {
-    path: 'product',
-    component: ProductComponent,
-  },
+  }
 ];
 
 @NgModule({

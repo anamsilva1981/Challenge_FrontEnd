@@ -1,5 +1,5 @@
 <div class="card">
-  <p-dataView #dv [value]="product" [layout]="layout">
+  <p-dataView #dv [value]="products" [layout]="layout">
     <ng-template pTemplate="header">
       <div class="flex justify-content-end">
       </div>
@@ -11,7 +11,7 @@
         >
           <img
             class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
-            [src]="product.images"
+            [src]="product.thumbnail"
             [alt]="product.title"
           />
           <div
@@ -33,7 +33,7 @@
                 </span>
                 <p-tag
                   [value]="product.stock"
-                  [severity]="getSeverity(product)"
+                  [severity]="getSeverity(product.stock)"
                 ></p-tag>
               </div>
             </div>
@@ -72,10 +72,7 @@
           <div class="flex flex-column align-items-center gap-3 py-5">
             <img
               class="w-9 shadow-2 border-round"
-              [src]="
-                'https://primefaces.org/cdn/primeng/images/demo/product/' +
-                product.images
-              "
+              [src]=" product.thumbnail"
               [alt]="product.title"
             />
             <div class="text-2xl font-bold">{{ product.title }}</div>

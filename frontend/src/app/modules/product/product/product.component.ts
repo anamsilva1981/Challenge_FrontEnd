@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../service/product.service';
 import { Product } from '../interface/product';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -11,23 +10,41 @@ import { take } from 'rxjs';
 export class ProductComponent implements OnInit{
   private readonly productService = inject(ProductService); 
   public layout: 'list' | 'grid' = 'grid';
-  public product!: Product[];
+  public products!: Product[];
 
-  constructor() {
-    this.productService.getAllProducts();
-  }
+  constructor() {}
 
   public ngOnInit(): void {
+    console.log('ngOnInit')
     this.getAllProductsService();
   }
 
   public getAllProductsService(): void {
-    this.productService.getAllProducts().pipe().subscribe( product => { console.log(product); this.product = product})
+    console.log('teste')
+    this.productService.getAllProducts().subscribe({
+      next: (productsList) => {
+        this.products = productsList.products;
+        console.log(productsList);
+      },
+      
+      error: (error) => {
+        console.log(error)
+      }
+
+    })
     
   }
 
-  public getSeverity(product: Product): string | undefined {
-    const stock: any = product.stock;
+  public getSeverity(stock: number): string | undefined {
+    // const stock: any = product.stock;
     return stock >= 1 ? 'sucess' : 'danger';
 };
 }
+
+// ajustar o grid
+// colocar a paginacao
+// severety
+// paginacao
+// sort 
+
+// Detalhe do Products-

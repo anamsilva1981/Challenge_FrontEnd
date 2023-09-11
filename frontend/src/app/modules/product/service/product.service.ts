@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../interface/product';
+import { Product, ProductResponse } from '../interface/product';
 import { environment } from 'src/environments/environment';
 import { Observable, tap } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable, tap } from 'rxjs';
 export class ProductService {
   private http = inject(HttpClient);
 
-  public getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${environment.API}/products`);
+  public getAllProducts(): Observable<ProductResponse> {
+    return this.http.get<ProductResponse>(`${environment.API}/products`);
   }
 }

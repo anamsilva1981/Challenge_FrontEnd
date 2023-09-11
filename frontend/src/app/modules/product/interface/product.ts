@@ -1,5 +1,12 @@
+export interface ProductResponse {
+  limit: number;
+  skip: number;
+  total: number;
+  products: Product[];
+}
+
 export interface Product {
-  id: number;
+  id: string;
   title: string;
   description: string;
   price: number;
@@ -9,5 +16,5 @@ export interface Product {
   brand: string;
   category: string;
   thumbnail: string;
-  images: string;
+  images: string[];
 }
