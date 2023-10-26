@@ -1,11 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { SidenavComponent } from '../sidenav/sidenav.component';
+import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    standalone: true,
+    imports: [
+        ToolbarModule,
+        SidenavComponent,
+        FormsModule,
+        ButtonModule,
+    ],
 })
 export class HeaderComponent implements OnInit {
   public items: MenuItem[] | undefined;

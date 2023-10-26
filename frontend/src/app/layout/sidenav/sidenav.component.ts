@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, TreeNode } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
+    selector: 'app-sidenav',
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.scss'],
+    standalone: true,
+    imports: [
+        SidebarModule,
+        PanelMenuModule,
+        ButtonModule,
+    ],
 })
 export class SidenavComponent implements OnInit {
   public sidebarVisible = false;
