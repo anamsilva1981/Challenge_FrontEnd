@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
+import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SearchComponent } from '../search/search.component';
 
@@ -13,7 +12,6 @@ import { SearchComponent } from '../search/search.component';
     standalone: true,
     imports: [
         ToolbarModule,
-        SidenavComponent,
         FormsModule,
         ButtonModule,
         SearchComponent,

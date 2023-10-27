@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ProductService } from 'src/app/features/product/service/product.service';
-import { Product } from 'src/app/features/product/interface/product';
+import { InputTextModule } from 'primeng/inputtext';
+import { Product } from 'src/app/core/interfaces/product.interface';
+import { ProductsService } from 'src/app/core/services/products/products.service';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +18,7 @@ export class SearchComponent {
   public products!: Product[];
   public allProducts: Product[] = [];
 
-  private _productService = inject(ProductService);
+  private _ProductsService = inject(ProductsService);
 
   public searchProduct(e: Event): void {
     const target = e.target as HTMLInputElement;

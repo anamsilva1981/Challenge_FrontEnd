@@ -1,12 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Product } from '../interface/product';
-import { ProductService } from '../service/product.service';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
 import { FormsModule } from '@angular/forms';
-import { RatingModule } from 'primeng/rating';
 import { SharedModule } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { TagModule } from 'primeng/tag';
+import { Product } from '../../../core/interfaces/product.interface';
+import { ProductsService } from '../../../core/services/products/products.service';
+
 
 @Component({
     selector: 'app-product',
@@ -20,46 +22,34 @@ import { DataViewModule } from 'primeng/dataview';
         FormsModule,
         TagModule,
         ButtonModule,
+        CardModule,
     ],
 })
 export class ProductComponent implements OnInit{
-  private readonly productService = inject(ProductService);
+  private readonly productsService = inject(ProductsService);
   public layout: 'list' | 'grid' = 'grid';
   public products!: Product[];
 
-  constructor() {}
-
   public ngOnInit(): void {
-    console.log('ngOnInit')
-    this.getAllProductsService();
+    this.getAllProducts();
   }
 
-  public getAllProductsService(): void {
-    console.log('teste')
-    this.productService.getAllProducts().subscribe({
+  public getAllProducts(): void {
+    this.productsService.getAllProducts().subscribe({
       next: (productsList) => {
+        productsList.products.forEach(product => {
+          if (product.stock > 0) product.inventoryStatus = 'In Stock';
+          if (product.stock < 1) product.inventoryStatus = 'Out Of Stock';
+        })
         this.products = productsList.products;
-        console.log(productsList);
       },
-
       error: (error) => {
         console.log(error)
       }
-
     })
-
   }
 
   public getSeverity(stock: number): string | undefined {
-    // const stock: any = product.stock;
     return stock >= 1 ? 'sucess' : 'danger';
   };
 }
-
-// ajustar o grid
-// colocar a paginacao
-// severety
-// paginacao
-// sort
-
-// Detalhe do Products-
