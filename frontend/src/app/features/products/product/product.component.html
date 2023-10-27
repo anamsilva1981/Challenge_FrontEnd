@@ -20,9 +20,9 @@
                       <span class="text-2xl font-semibold">{{ '$' + product.price }}</span>
                       <button
               pButton
-              icon="pi pi-shopping-cart"
+              icon="pi pi-search"
               class="p-button-rounded"
-              [disabled]="product.stock === 'sucess'"
+              (click)="goToDetails(product.id)"
             ></button>
                   </div>
               </div>

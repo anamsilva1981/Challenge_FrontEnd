@@ -1,0 +1,14 @@
+  <div class="grid">
+    <div class="product-detail" *ngIf="product">
+      <div class="card flex justify-content-center">
+        <p-card
+          header="{{ product.title }}"
+          [style]="{ width: '40rem' }">
+          <ng-template pTemplate="header">
+            <img alt="image product" src="{{ product.thumbnail }}" style="width: 40rem" />
+          </ng-template>
+          <p>{{ product.description }}</p>
+        </p-card>
+      </div>
+    </div>
+  </div>

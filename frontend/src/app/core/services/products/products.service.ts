@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProductResponse } from '../../interfaces/product-response.interface';
+import { Product } from '../../interfaces/product.interface';
 
 const productResponse = {
   products: [],
@@ -17,6 +18,7 @@ const productResponse = {
 export class ProductsService {
   private _http = inject(HttpClient);
   private _productsSubject$ = new BehaviorSubject<ProductResponse>(productResponse);
+  private _productsDetails!: Product;
 
   public readonly products$: Observable<ProductResponse> = this._productsSubject$.asObservable();
 
@@ -28,9 +30,10 @@ export class ProductsService {
     });
   }
 
-  public getProductById(id: string): Observable<ProductResponse> {
-    return this._http.get<ProductResponse>(`${environment.API}/products/${id}`);
+  public getProductById(id: number): Observable<Product> {
+    return this._http.get<Product>(`${environment.API}/products/${id}`);
   }
+
 
   public getProductByFilter(filter: string): void {
     this._http.get<ProductResponse>(`${environment.API}/products/search?q=${filter}`).pipe(take(1))
@@ -38,4 +41,5 @@ export class ProductsService {
       this._productsSubject$.next(response);
     });
   }
+
 }

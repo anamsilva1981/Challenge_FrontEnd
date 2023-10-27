@@ -10,6 +10,7 @@ import { Product } from '../../../core/interfaces/product.interface';
 import { ProductsService } from '../../../core/services/products/products.service';
 import { Observable, Subscription } from 'rxjs';
 import { ProductResponse } from 'src/app/core/interfaces/product-response.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,6 +30,7 @@ import { ProductResponse } from 'src/app/core/interfaces/product-response.interf
 })
 export class ProductComponent implements OnInit{
   private readonly productsService = inject(ProductsService);
+  private router = inject(Router);
 
   public readonly products$: Observable<ProductResponse> = this.productsService.products$;
   public subscription!: Subscription;
@@ -48,8 +50,11 @@ export class ProductComponent implements OnInit{
     this.productsService.getAllProducts();
   }
 
-
   public getSeverity(stock: number): string | undefined {
     return stock >= 1 ? 'success' : 'danger';
   };
+
+   public goToDetails(id: number): void {
+    this.router.navigateByUrl(`products/detail/${id}`);
+  }
 }
