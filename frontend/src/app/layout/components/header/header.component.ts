@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -18,6 +19,7 @@ import { ProductsService } from 'src/app/core/services/products/products.service
         ButtonModule,
         InputTextModule,
         ReactiveFormsModule,
+        RouterLink,
     ],
 })
 export class HeaderComponent {
