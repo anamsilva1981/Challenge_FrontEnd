@@ -2,13 +2,18 @@
   <div class="card w-full absolute top-0 left-0 overflow-hidden">
     <div class="relative bg-primary">
     <p-toolbar styleClass="bg-primary">
-      <div class="p-toolbar-group-start w-2" style="border: white 1px solid">
+      <div class="p-toolbar-group-start w-2">
         <img src="/assets//images/logo-myshop.png" alt="logotipo"  width="150">
       </div>
-      <div class="p-toolbar-group-center w-6" style="border: white 1px solid">
-        <app-search />
+      <div class="p-toolbar-group-center w-6">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <span class="p-input-icon-right">
+          <input type="text" pInputText formControlName="searchText" style="width: 40vw"/>
+        </span>
+        <button type="submit"><i class="pi pi-search"></i></button>
+    </form>
       </div>
-      <div class="p-toolbar-group-end w-2" style="border: white 1px solid">
+      <div class="p-toolbar-group-end w-2">
         <p-button icon="pi pi-shopping-cart"></p-button>
         <p-button icon="pi pi-user"></p-button>
         <p-button icon="pi pi-bell"></p-button>

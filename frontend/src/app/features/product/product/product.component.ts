@@ -8,6 +8,8 @@ import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { Product } from '../../../core/interfaces/product.interface';
 import { ProductsService } from '../../../core/services/products/products.service';
+import { Observable, Subscription } from 'rxjs';
+import { ProductResponse } from 'src/app/core/interfaces/product-response.interface';
 
 
 @Component({
@@ -27,29 +29,27 @@ import { ProductsService } from '../../../core/services/products/products.servic
 })
 export class ProductComponent implements OnInit{
   private readonly productsService = inject(ProductsService);
+
+  public readonly products$: Observable<ProductResponse> = this.productsService.products$;
+  public subscription!: Subscription;
+
   public layout: 'list' | 'grid' = 'grid';
   public products!: Product[];
 
+
   public ngOnInit(): void {
-    this.getAllProducts();
+    this.subscription = this.products$.subscribe((productList) => {
+      productList.products.forEach(product => {
+        if (product.stock > 0) product.inventoryStatus = 'In Stock';
+        if (product.stock < 1) product.inventoryStatus = 'Out Of Stock';
+      })
+      this.products = productList.products;
+    });
+    this.productsService.getAllProducts();
   }
 
-  public getAllProducts(): void {
-    this.productsService.getAllProducts().subscribe({
-      next: (productsList) => {
-        productsList.products.forEach(product => {
-          if (product.stock > 0) product.inventoryStatus = 'In Stock';
-          if (product.stock < 1) product.inventoryStatus = 'Out Of Stock';
-        })
-        this.products = productsList.products;
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
-  }
 
   public getSeverity(stock: number): string | undefined {
-    return stock >= 1 ? 'sucess' : 'danger';
+    return stock >= 1 ? 'success' : 'danger';
   };
 }

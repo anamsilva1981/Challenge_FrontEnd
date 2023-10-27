@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MenuItem } from 'primeng/api';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
-import { SearchComponent } from '../search/search.component';
+import { take } from 'rxjs';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+
 
 @Component({
     selector: 'app-header',
@@ -14,33 +16,19 @@ import { SearchComponent } from '../search/search.component';
         ToolbarModule,
         FormsModule,
         ButtonModule,
-        SearchComponent,
+        InputTextModule,
+        ReactiveFormsModule,
     ],
 })
-export class HeaderComponent implements OnInit {
-  public items: MenuItem[] | undefined;
-  public valueInput!: string;
+export class HeaderComponent {
+  private productService = inject(ProductsService);
 
-  public ngOnInit() {
-    this.items = [
-      {
-        label: 'Update',
-        icon: 'pi pi-refresh',
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-times',
-      },
-      {
-        label: 'Angular',
-        icon: 'pi pi-external-link',
-        url: 'http://angular.io',
-      },
-      {
-        label: 'Router',
-        icon: 'pi pi-upload',
-        routerLink: '/fileupload',
-      },
-    ];
+  public form = new FormGroup({
+    searchText: new FormControl(''),
+  });
+
+  public onSubmit(): void {
+    let filterValue = this.form.controls['searchText'].value;
+    this.productService.getProductByFilter(filterValue!);
   }
 }
