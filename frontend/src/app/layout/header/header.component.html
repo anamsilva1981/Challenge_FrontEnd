@@ -2,24 +2,16 @@
   <div class="card w-full absolute top-0 left-0 overflow-hidden">
     <div class="relative bg-primary">
     <p-toolbar styleClass="bg-primary">
-      <div class="p-toolbar-group-start">
+      <div class="p-toolbar-group-start w-2" style="border: white 1px solid">
         <img src="/assets//images/logo-myshop.png" alt="logotipo"  width="150">
         <div class="sidenav">
           <app-sidenav />
         </div>
       </div>
-      <div class="p-toolbar-group-center">
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input
-            class="w-30rem"
-            type="text"
-            pInputText
-            [(ngModel)]="valueInput"
-          />
-        </span>
+      <div class="p-toolbar-group-center w-6" style="border: white 1px solid">
+        <app-search />
       </div>
-      <div class="p-toolbar-group-end">
+      <div class="p-toolbar-group-end w-2" style="border: white 1px solid">
         <p-button icon="pi pi-shopping-cart"></p-button>
         <p-button icon="pi pi-user"></p-button>
         <p-button icon="pi pi-bell"></p-button>

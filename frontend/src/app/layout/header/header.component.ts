@@ -4,16 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarModule } from 'primeng/toolbar';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
     standalone: true,
     imports: [
         ToolbarModule,
         SidenavComponent,
         FormsModule,
         ButtonModule,
+        SearchComponent,
     ],
 })
 export class HeaderComponent implements OnInit {
