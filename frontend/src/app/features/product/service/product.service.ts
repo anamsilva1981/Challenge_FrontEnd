@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProductResponse } from '../interface/product';
@@ -8,7 +8,7 @@ import { ProductResponse } from '../interface/product';
   providedIn: 'root',
 })
 export class ProductService {
-  private _http = inject(HttpClient);
+  constructor(private _http: HttpClient) {}
 
   public getAllProducts(): Observable<ProductResponse> {
     return this._http.get<ProductResponse>(`${environment.API}/products`);
@@ -18,8 +18,7 @@ export class ProductService {
     return this._http.get<ProductResponse>(`${environment.API}/products/${id}`);
   }
 
-  public getProductByName(title: string): Observable<ProductResponse> {
-    return this._http.get<ProductResponse>(`${environment.API}/products/${title}`);
+  public getProductsByTitle(title: string): Observable<ProductResponse> {
+    return this._http.get<ProductResponse>(`${environment.API}/products?title=${title}`);
   }
-
 }

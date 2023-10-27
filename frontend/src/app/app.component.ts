@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './layout/footer/footer.component';
-import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/components/footer/footer.component';
+import { HeaderComponent } from './layout/components/header/header.component';
 
 @Component({
     selector: 'app-root',
