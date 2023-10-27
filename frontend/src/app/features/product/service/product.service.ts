@@ -8,9 +8,18 @@ import { ProductResponse } from '../interface/product';
   providedIn: 'root',
 })
 export class ProductService {
-  private http = inject(HttpClient);
+  private _http = inject(HttpClient);
 
   public getAllProducts(): Observable<ProductResponse> {
-    return this.http.get<ProductResponse>(`${environment.API}/products`);
+    return this._http.get<ProductResponse>(`${environment.API}/products`);
   }
+
+  public getProductById(id: string): Observable<ProductResponse> {
+    return this._http.get<ProductResponse>(`${environment.API}/products/${id}`);
+  }
+
+  public getProductByName(title: string): Observable<ProductResponse> {
+    return this._http.get<ProductResponse>(`${environment.API}/products/${title}`);
+  }
+
 }
