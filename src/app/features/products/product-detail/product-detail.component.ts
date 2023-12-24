@@ -1,21 +1,37 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AsyncPipe, NgClass, NgIf, TitleCasePipe } from '@angular/common';
-import { CarouselModule } from 'primeng/carousel';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
+import { CarouselModule } from 'primeng/carousel';
 import { DataViewModule } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
-import { FormsModule } from '@angular/forms';
+import { TagModule } from 'primeng/tag';
 import { take } from 'rxjs';
-import { ProductsService } from 'src/app/core/services/products/products.service';
 import { Product } from 'src/app/core/interfaces/product.interface';
+import { ProductsService } from 'src/app/core/services/products/products.service';
 
 @Component({
   selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss'],
+  template: `
+    <div class="card flex justify-content-center">
+      <div class="product-detail" *ngIf="product">
+        <div class="card flex justify-content-center mt-8">
+          <p-card header="{{ product.title }}" [style]="{ width: '40rem' }">
+            <ng-template pTemplate="header">
+              <img
+                alt="image product"
+                src="{{ product.thumbnail }}"
+                style="width: 40rem"
+              />
+            </ng-template>
+            <p>{{ product.description }}</p>
+          </p-card>
+        </div>
+      </div>
+    </div>
+  `,
   standalone: true,
   imports: [
     NgIf,
@@ -46,7 +62,7 @@ export class ProductDetailComponent implements OnInit {
       this.productsService
         .getProductById(Number(this.id))
         .pipe(take(1))
-        .subscribe(product => {
+        .subscribe((product) => {
           this.product = product;
         });
     }
@@ -66,5 +82,4 @@ export class ProductDetailComponent implements OnInit {
       return 'sucess';
     }
   }
-
 }

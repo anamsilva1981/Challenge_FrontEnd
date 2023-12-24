@@ -9,7 +9,8 @@ const app_routes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: () => import('./core/routes/routes').then(module => module.productRoutes),
+    loadChildren: () =>
+      import('./core/routes/routes').then((module) => module.productRoutes),
   },
 ];
 
